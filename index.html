@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+    </head>
+    <body>
+        <script>
+            let grid = [[0,0,0],
+                        [0,0,0],
+                        [0,0,0]];
+            
+            let player = 1;
+            let redWinCount = 0;
+            let blueWinCount = 0;
+
+            function checkForWin(){
+                for (i=0; i < 3; i++){
+                    if (grid[i][0] == grid[i][1] && grid[i][0] == grid[i][2]){
+                        console.log("win on row");
+                        return grid[i][0];
+                    }
+                    if (grid[0][i] == grid[1][i] && grid[0][i] == grid[2][i]){
+                        console.log("win on col");
+                        return grid[0][i];
+                    }
+                }
+
+
+                if (grid[0][0] == grid[1][1] && grid[0][0] == grid[2][2]){
+                    console.log("win on diag tl br");
+                    return grid[0][0];
+                } else if (grid[0][2] == grid[1][1] && grid[0][2] == grid[2][0]){
+                    console.log("win on diag tr bl");
+                    return grid[0][2];
+                }
+
+            }
+
+            function logic(x, y){
+                grid[x][y] = player;
+                
+                let color;
+                if (player == 1){
+                    color = "red";
+                } else {
+                    color = "blue";
+                }
+                  
+                let button = x.toString() + y.toString();
+                document.getElementById(button).style.backgroundColor = color;
+                
+
+                player += 1;
+                if (player == 3){
+                    player = 1;
+                }  
+                let win = checkForWin();
+                if (win == 1){
+                    redWinCount += 1;
+                    document.getElementById("red-win").innerHTML = redWinCount;
+                    reset();
+                } else if (win == 2) {
+                    blueWinCount += 1;
+                    document.getElementById("blue-win").innerHTML = blueWinCount;
+                    reset();
+                }
+            }
+        
+            function reset(){
+                grid = [[0,0,0],
+                        [0,0,0],
+                        [0,0,0]];
+
+                for (i=0; i<3; i++){
+                    for (j=0; j<3; j++){
+                        document.getElementById(i.toString() + j.toString()).style.backgroundColor = "white";
+                    }  
+                }
+            }
+        </script>
+        <ul>
+            <li class="player-name left">Red Team</li>
+            <li class="player-name right">Blue Team</li>
+        </ul>
+        <br/>
+        <br/>
+        <ul>
+            <li id="red-win" class="win-count left">0</li>
+            <li id="blue-win" class="win-count right">0</li>
+        </ul>
+        <table id="game">
+            <tr>
+                <td><input id="00" type="button" onclick="logic(0,0);"></td>
+                <td><input id="01" type="button" onclick="logic(0,1);"></td>
+                <td><input id="02" type="button" onclick="logic(0,2);"></td>
+            </tr>
+            <tr>
+                <td><input id="10" type="button" onclick="logic(1,0);"></td>
+                <td><input id="11" type="button" onclick="logic(1,1);"></td>
+                <td><input id="12" type="button" onclick="logic(1,2);"></td>
+            </tr>
+            <tr>
+                <td><input id="20" type="button" onclick="logic(2,0);"></td>
+                <td><input id="21" type="button" onclick="logic(2,1);"></td>
+                <td><input id="22" type="button" onclick="logic(2,2);"></td>
+            </tr>
+        </table>
+            <p id="winner"></p>
+
+
+    </body>
+</html>

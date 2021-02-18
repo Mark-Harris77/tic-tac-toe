@@ -1,0 +1,54 @@
+table {
+ padding: 0;
+}
+tr, td {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+
+
+#game {
+    margin: 30% auto;
+    height: 100px;
+}
+input {
+    width: 100px;
+    height: 100px;
+}
+
+.player-name, .win-count {
+    list-style-type: none;
+}
+
+.player-name {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 5px;
+    text-align: center;
+}
+
+.win-count {
+    margin: 20px;
+    padding: 20px;
+    width: 60px;
+    text-align: center;
+    font-size: 60px;
+    border-radius: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 5px solid black;
+}
+
+li {
+    display: inline;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
